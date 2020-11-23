@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ohtu.matkakortti.KassapaateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-23T17:54:13" hostname="raffikone" time="0.211">
+<testsuite name="ohtu.matkakortti.KassapaateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-11-23T19:33:29" hostname="raffikone" time="0.197">
   <properties/>
-  <testcase name="kortiltaVelotetaanHintaJosRahaaOn" classname="ohtu.matkakortti.KassapaateTest" time="0.209"/>
-  <testcase name="kortiltaEiVelotetaJosRahaEiRiita" classname="ohtu.matkakortti.KassapaateTest" time="0.001"/>
+  <testcase name="kortiltaVelotetaanHintaJosRahaaOn" classname="ohtu.matkakortti.KassapaateTest" time="0.196"/>
+  <testcase name="lataaJosPositiivinen" classname="ohtu.matkakortti.KassapaateTest" time="0.001"/>
+  <testcase name="kortiltaEiVelotetaJosRahaEiRiita" classname="ohtu.matkakortti.KassapaateTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
