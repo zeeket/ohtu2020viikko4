@@ -1,0 +1,5 @@
+# Gradle related files and caches
+.gradletasknamecache
+.gradle/
+build/
+bin/
