@@ -13,7 +13,6 @@ import static org.mockito.Mockito.when;
 
 public class VerkkokauppaTest {
     Pankki pankki;
-    Kauppa kauppa;
     Viitegeneraattori viite;
     Varasto varasto;
     // ...
@@ -162,6 +161,47 @@ public class VerkkokauppaTest {
         // sitten suoritetaan varmistus, että pankin metodia tilisiirto on kutsuttu
         verify(pankki).tilisiirto(eq("pekka"), eq(42), eq("12345"), anyString(),eq(1));   
     }
-    
-    
+
+    @Test
+    public void pyydetaanUusiViiteJokaiseenMaksuun() {
+
+        // luodaan ensin mock-oliot
+
+        // määritellään että viitegeneraattori palauttaa viitten 42
+        when(viite.uusi()).thenReturn(42);
+
+        // määritellään että tuote numero 1 on maito jonka hinta on 5 ja saldo 10
+        when(varasto.saldo(1)).thenReturn(10); 
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+
+        // sitten testattava kauppa 
+        Kauppa k = new Kauppa(varasto, pankki, viite);              
+
+        // tehdään ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 1 eli maitoa
+        k.tilimaksu("pekka", "12345");
+
+        // tarkistetaan että tässä vaiheessa viitegeneraattorin metodia seuraava()
+        // on kutsuttu kerran
+        verify(viite, times(1)).uusi();
+
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 1 eli maitoa
+        k.tilimaksu("kalevi", "66666");
+        // tarkistetaan että tässä vaiheessa viitegeneraattorin metodia seuraava()
+        // on kutsuttu kaksi kertaa
+        verify(viite, times(2)).uusi();
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 1 eli maitoa
+        k.tilimaksu("hennu", "16666");
+
+        // tarkistetaan että tässä vaiheessa viitegeneraattorin metodia seuraava()
+        // on kutsuttu kolme kertaa        
+        verify(viite, times(3)).uusi();
+    }
+
+
 }
