@@ -47,5 +47,11 @@ public class KassapaateTest {
        kassa.lataa(kortti,-5);
         verify(kortti, times(1)).lataa(anyInt());
     }
+
+    @Test
+    public void alaLataaJosNegatiivinen() {
+       kassa.lataa(kortti,-1);
+        verify(kortti, times(0)).lataa(anyInt());
+    }
       
 }
